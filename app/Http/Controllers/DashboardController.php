@@ -25,7 +25,7 @@ class DashboardController extends Controller {
 
 	public function index($method = "main")
 	{
-		if($this->data['users']->role == "admin" AND $this->panelInit->version != $this->panelInit->settingsArray['latestVersion']){
+		if($this->data['users']->role == "admin" /*AND $this->panelInit->version != $this->panelInit->settingsArray['latestVersion']*/){
 			$this->data['latestVersion'] = $this->panelInit->settingsArray['latestVersion'];
 		}
 		$this->data['role'] = $this->data['users']->role;

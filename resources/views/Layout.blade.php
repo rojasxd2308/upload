@@ -156,7 +156,16 @@
                     <!-- User profile text-->
                     <div class="profile-text"> <a href="javascript:void(0)" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{$users['fullName']}} <span class="caret"></span></a>
                         <div class="dropdown-menu animated flipInY">
-                            <?php if($panelInit->can('AccountSettings.myInvoices')){ ?><a href="#/account/invoices" class="dropdown-item"><i class="ti-wallet"></i> <?php echo $panelInit->language['myInvoices']; ?></a><?php } ?>
+                            <?php  
+                        
+                                 var_dump($panelInit->can('AccountSettings.Messages'))
+                                
+                                ?>
+                            <?php if(
+                                
+                                $panelInit->can('AccountSettings.myInvoices')
+
+                            ){ ?><a href="#/account/invoices" class="dropdown-item"><i class="ti-wallet"></i> <?php echo $panelInit->language['myInvoices']; ?></a><?php } ?>
                             <?php if($panelInit->can('AccountSettings.Messages')){ ?><a href="#/messages" class="dropdown-item"><i class="mdi mdi-message-text-outline"></i> <?php echo $panelInit->language['Messages']; ?></a><?php } ?>
                             <?php if($panelInit->can( array("AccountSettings.ChgProfileData","AccountSettings.chgEmailAddress","AccountSettings.chgPassword") )) { ?><div class="dropdown-divider"></div> <a href="#/account" class="dropdown-item"><i class="ti-settings"></i> <?php echo $panelInit->language['AccountSettings']; ?></a><?php } ?>
                             <div class="dropdown-divider"></div> <a href="{{URL::to('/logout')}}" class="dropdown-item"><i class="fa fa-power-off"></i> <?php echo $panelInit->language['logout']; ?></a>
@@ -168,11 +177,15 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" <?php if($panelInit->settingsArray['leftmenuScroller'] != "e"){ echo "style='padding-bottom:60px;'"; }?>>
                         <?php
+                          
                         
                         foreach ($panelInit->panelItems as $key => $value) {
-                            if(isset($value['activated']) AND !strpos($panelInit->settingsArray['activatedModules'],$value['activated']) ){ continue;  }
+                            if(isset($value['activated']) AND !strpos($panelInit->settingsArray['activatedModules'],$value['activated']) ){ continue;  
+                            }
                             if(isset($value['role_perm'])){
+                             
                                 if($panelInit->can($value['role_perm']) == false){
+                                
                                     continue;
                                 }
                             }
